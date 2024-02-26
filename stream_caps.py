@@ -475,7 +475,7 @@ with crimeDay_col2:
         tooltip=['Hari', 'Jumlah Kejahatan'],
         color=alt.Color('Hari:O', scale=alt.Scale(type='ordinal', range=['#0072B2', '#E64A19', '#F9A825', '#79C75F', '#48A9A6', '#EBEB02', '#C75FB4']))
     ).properties(
-        width=700,
+        width=600,
         height=600,
         title='Jumlah Kriminalitas per Hari'
     )
@@ -530,7 +530,7 @@ with crimeCount_col2:
         y=alt.Y('Deskripsi Kejahatan').sort('-x'),
         color=alt.value('#0072B2'),
     ).properties(
-        width=700,
+        width=600,
         height=500,
         title='10 Jenis Kejahatan Paling Umum'
     )
