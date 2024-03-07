@@ -333,34 +333,20 @@ reportOcc_col3, reportOcc_col4 = st.columns(2)
 
 with reportOcc_col1:
     # Grafik Interaktif untuk Analisis Lebih Lanjut
-    interactive_chart2 = alt.Chart(data_reportOcc).mark_line().encode(
-        x=alt.X('Month_Occ:O', axis=alt.Axis(title='Bulan', labelAngle=0)),
-        y='Jumlah Kejadian:Q',
-        color='Year_Occ:N',
-        tooltip=['Year_Occ', 'Month_Occ', 'Jumlah Kejadian']
-    ).properties(
-        width=600,
-        height=400,
-        title='Tren Musiman Jumlah Kejadian Kriminal (Interaktif)'
-    ).interactive()
+    # interactive_chart2 = alt.Chart(data_reportOcc).mark_line().encode(
+    #     x=alt.X('Month_Occ:O', axis=alt.Axis(title='Bulan', labelAngle=0)),
+    #     y='Jumlah Kejadian:Q',
+    #     color='Year_Occ:N',
+    #     tooltip=['Year_Occ', 'Month_Occ', 'Jumlah Kejadian']
+    # ).properties(
+    #     width=600,
+    #     height=400,
+    #     title='Tren Musiman Jumlah Kejadian Kriminal (Interaktif)'
+    # ).interactive()
     
-    interactive_chart2
+    # interactive_chart2
     
-with reportOcc_col2:
-    # Heatmap untuk Melihat Pola
-    heatmap2 = alt.Chart(data_reportOcc).mark_rect().encode(
-        x=alt.X('Month_Occ:O', axis=alt.Axis(title='Bulan', labelAngle=0)),
-        y=alt.Y('Year_Occ:O', axis=alt.Axis(title='Tahun Kejadian')),
-        color='Jumlah Kejadian:Q'
-    ).properties(
-        width=600,
-        height=400,
-        title='Heatmap Pola Musiman Jumlah Kejadian Kriminal'
-    )
-    
-    heatmap2
-
-with reportOcc_col3:
+    # Ganti Menjadi Penjelasan
     st.markdown('##### Analisa Tren Musiman Kejadian Kriminal')
     string4 = '''
                 1. **Pola Musiman**: Terdapat pola musiman dalam jumlah kejadian tindak kriminal, dengan terjadinya fluktuasi yang berulang dari bulan ke bulan. Misalnya, terlihat peningkatan yang konsisten pada bulan Juli di setiap tahun, yang mungkin dapat dijelaskan oleh faktor-faktor seperti cuaca atau perubahan perilaku masyarakat selama musim liburan.
@@ -380,61 +366,96 @@ with reportOcc_col3:
                     Tantangan dalam memahami dan mengatasi kejahatan masih ada, namun data ini juga menawarkan peluang untuk analisis lebih lanjut dan pengembangan strategi yang lebih efektif dalam penegakan hukum dan pencegahan. Upaya ini dapat dilakukan dengan meningkatkan kualitas pelaporan, memperkuat kerjasama masyarakat dan penegakan hukum, serta mengembangkan program pencegahan yang tepat sasaran.
                 '''
     st.info(stringInfo3)
-
-with reportOcc_col4:
-    # Layout
-    st.markdown('##### Tren Jumlah Perbandingan Berdasarkan Tahun')
-
-    # Buat daftar tahun unik
-    tahun_unik2 = list(data_reportOcc['Year_Occ'].unique())
-
-    # Buat pilihan dropdown untuk tahun pertama
-    tahun_pertama2 = st.selectbox('Pilih Tahun Pertama:', tahun_unik2, key='tahun_pertama2')
-
-    # Buat pilihan dropdown untuk tahun kedua
-    tahun_kedua2 = st.selectbox('Pilih Tahun Kedua:', tahun_unik2, key='tahun_kedua2')
-
-    # Filter data berdasarkan tahun yang dipilih
-    data_reportOcc_filtered1 = data_reportOcc[data_reportOcc['Year_Occ'] == tahun_pertama2]
-    data_reportOcc_filtered2 = data_reportOcc[data_reportOcc['Year_Occ'] == tahun_kedua2]
-
-    # Buat plot dengan Altair untuk perbandingan antara tahun pertama dan tahun kedua
-    chart = alt.Chart(data_reportOcc_filtered1).mark_line().encode(
-        x=alt.X('Month_Occ', title='Bulan'),
-        y=alt.Y('Jumlah Kejadian'),
-        color=alt.value('blue'),
-        tooltip=['Year_Occ:N', 'Jumlah Kejadian:Q']  # Menambahkan tooltip untuk tahun dan jumlah kejahatan
+    
+with reportOcc_col2:
+    # Heatmap untuk Melihat Pola
+    heatmap2 = alt.Chart(data_reportOcc).mark_rect().encode(
+        x=alt.X('Month_Occ:O', axis=alt.Axis(title='Bulan', labelAngle=0)),
+        y=alt.Y('Year_Occ:O', axis=alt.Axis(title='Tahun Kejadian')),
+        color='Jumlah Kejadian:Q'
     ).properties(
         width=600,
-        height=400
+        height=400,
+        title='Heatmap Pola Musiman Jumlah Kejadian Kriminal'
     )
-
-    chart += alt.Chart(data_reportOcc_filtered2).mark_line().encode(
-        x=alt.X('Month_Occ', title='Bulan'),
-        y=alt.Y('Jumlah Kejadian'),
-        color=alt.value('red'),
-        tooltip=['Year_Occ:N', 'Jumlah Kejadian:Q']  # Menambahkan tooltip untuk tahun dan jumlah kejahatan
-    )
-
-    # Tambahkan titik pada setiap lekukan grafik
-    chart += alt.Chart(data_reportOcc_filtered1).mark_circle(color='blue').encode(
-        x=alt.X('Month_Occ', title='Bulan'),
-        y=alt.Y('Jumlah Kejadian'),
-        tooltip=['Year_Occ:N', 'Jumlah Kejadian:Q']  # Menambahkan tooltip untuk tahun
-    )
-
-    chart += alt.Chart(data_reportOcc_filtered2).mark_circle(color='red').encode(
-        x=alt.X('Month_Occ', title='Bulan'),
-        y=alt.Y('Jumlah Kejadian'),
-        tooltip=['Year_Occ:N', 'Jumlah Kejadian:Q']  # Menambahkan tooltip untuk tahun
-    )
-
-    # Tampilkan plot menggunakan Streamlit
-    st.altair_chart(chart, use_container_width=True)
     
-    # Menggunakan widget bar Altair untuk memilih tahun
-    year_selected2 = alt.binding_select(options=sorted(data_reportOcc['Year_Occ'].unique()), name='Tahun  ')
-    year_selection2 = alt.selection_single(fields=['Year_Occ'], bind=year_selected2)
+    heatmap2
+
+# with reportOcc_col3:
+#     st.markdown('##### Analisa Tren Musiman Kejadian Kriminal')
+#     string4 = '''
+#                 1. **Pola Musiman**: Terdapat pola musiman dalam jumlah kejadian tindak kriminal, dengan terjadinya fluktuasi yang berulang dari bulan ke bulan. Misalnya, terlihat peningkatan yang konsisten pada bulan Juli di setiap tahun, yang mungkin dapat dijelaskan oleh faktor-faktor seperti cuaca atau perubahan perilaku masyarakat selama musim liburan.
+                
+#                 2. **Tren Tahunan**: Meskipun terjadi fluktuasi bulanan, tren keseluruhan dari tahun ke tahun juga bisa diamati. Perhatikan bahwa jumlah kejadian tindak kriminal cenderung naik dari tahun 2020 hingga 2022, namun mengalami penurunan yang signifikan pada tahun 2024.
+                
+#                 3. **Perubahan Signifikan pada Tahun 2024**: Terdapat penurunan yang drastis dalam jumlah kejadian tindak kriminal pada tahun 2024. Ini bisa menjadi subjek penelitian lebih lanjut untuk memahami penyebabnya. Kemungkinan faktor yang berkontribusi meliputi peningkatan keamanan, perubahan sosial, atau kebijakan penegakan hukum yang baru, atau bisa jadi pada tahun baru di bulan baru ini tindak kejahatan masih minim terjadi.
+#             '''
+#     st.write(string4)
+    
+#     # KESIMPULAN TREN MUSIMAN
+#     stringInfo3 = '''
+#                     ##### Kesimpulan Analisa Tren Musiman Tindak Kriminal
+                    
+#                     Meskipun laporan tindak kriminal menunjukkan penurunan dari tahun 2020 hingga 2024, jumlah kejadiannya menunjukkan fluktuasi, dengan peningkatan di 2020-2022 dan penurunan di 2024. Perbedaan ini, serta pola musiman yang terlihat pada data, menunjukkan kompleksitas pola kejahatan.
+                    
+#                     Tantangan dalam memahami dan mengatasi kejahatan masih ada, namun data ini juga menawarkan peluang untuk analisis lebih lanjut dan pengembangan strategi yang lebih efektif dalam penegakan hukum dan pencegahan. Upaya ini dapat dilakukan dengan meningkatkan kualitas pelaporan, memperkuat kerjasama masyarakat dan penegakan hukum, serta mengembangkan program pencegahan yang tepat sasaran.
+#                 '''
+#     st.info(stringInfo3)
+
+# with reportOcc_col4:
+#     # Layout
+#     st.markdown('##### Tren Jumlah Perbandingan Berdasarkan Tahun')
+
+#     # Buat daftar tahun unik
+#     tahun_unik2 = list(data_reportOcc['Year_Occ'].unique())
+
+#     # Buat pilihan dropdown untuk tahun pertama
+#     tahun_pertama2 = st.selectbox('Pilih Tahun Pertama:', tahun_unik2, key='tahun_pertama2')
+
+#     # Buat pilihan dropdown untuk tahun kedua
+#     tahun_kedua2 = st.selectbox('Pilih Tahun Kedua:', tahun_unik2, key='tahun_kedua2')
+
+#     # Filter data berdasarkan tahun yang dipilih
+#     data_reportOcc_filtered1 = data_reportOcc[data_reportOcc['Year_Occ'] == tahun_pertama2]
+#     data_reportOcc_filtered2 = data_reportOcc[data_reportOcc['Year_Occ'] == tahun_kedua2]
+
+#     # Buat plot dengan Altair untuk perbandingan antara tahun pertama dan tahun kedua
+#     chart = alt.Chart(data_reportOcc_filtered1).mark_line().encode(
+#         x=alt.X('Month_Occ', title='Bulan'),
+#         y=alt.Y('Jumlah Kejadian'),
+#         color=alt.value('blue'),
+#         tooltip=['Year_Occ:N', 'Jumlah Kejadian:Q']  # Menambahkan tooltip untuk tahun dan jumlah kejahatan
+#     ).properties(
+#         width=600,
+#         height=400
+#     )
+
+#     chart += alt.Chart(data_reportOcc_filtered2).mark_line().encode(
+#         x=alt.X('Month_Occ', title='Bulan'),
+#         y=alt.Y('Jumlah Kejadian'),
+#         color=alt.value('red'),
+#         tooltip=['Year_Occ:N', 'Jumlah Kejadian:Q']  # Menambahkan tooltip untuk tahun dan jumlah kejahatan
+#     )
+
+#     # Tambahkan titik pada setiap lekukan grafik
+#     chart += alt.Chart(data_reportOcc_filtered1).mark_circle(color='blue').encode(
+#         x=alt.X('Month_Occ', title='Bulan'),
+#         y=alt.Y('Jumlah Kejadian'),
+#         tooltip=['Year_Occ:N', 'Jumlah Kejadian:Q']  # Menambahkan tooltip untuk tahun
+#     )
+
+#     chart += alt.Chart(data_reportOcc_filtered2).mark_circle(color='red').encode(
+#         x=alt.X('Month_Occ', title='Bulan'),
+#         y=alt.Y('Jumlah Kejadian'),
+#         tooltip=['Year_Occ:N', 'Jumlah Kejadian:Q']  # Menambahkan tooltip untuk tahun
+#     )
+
+#     # Tampilkan plot menggunakan Streamlit
+#     st.altair_chart(chart, use_container_width=True)
+    
+#     # Menggunakan widget bar Altair untuk memilih tahun
+#     year_selected2 = alt.binding_select(options=sorted(data_reportOcc['Year_Occ'].unique()), name='Tahun  ')
+#     year_selection2 = alt.selection_single(fields=['Year_Occ'], bind=year_selected2)
 
 st.markdown("---")
 
@@ -456,7 +477,7 @@ with crimeDay_col1:
                 - Hari dengan Kejahatan Tertinggi:
                     - Jumat: Memiliki jumlah kejahatan paling tinggi (98.546)\n
                     - Sabtu: Memiliki jumlah kejahatan kedua tertinggi (96.889)\n
-                    - Minggu: Memiliki jumlah kejahatan ketiga tertinggi (92.478)\n
+                    - Senin: Memiliki jumlah kejahatan ketiga tertinggi (92.511)\n
                 
                 - Hari dengan Kejahatan Terendah:
                     - Selasa: Memiliki jumlah kejahatan paling rendah (89.434)
@@ -469,8 +490,23 @@ with crimeDay_col1:
     st.write(string5)
     
 with crimeDay_col2:
+    # chart_day = alt.Chart(data_crime_day).mark_bar().encode(
+    #     x=alt.X('Hari:O', axis=alt.Axis(title='Hari', labelAngle=0)),
+    #     y=alt.Y('Jumlah Kejahatan:Q', title='Jumlah Kejahatan'),
+    #     tooltip=['Hari', 'Jumlah Kejahatan'],
+    #     color=alt.Color('Hari:O', scale=alt.Scale(type='ordinal', range=['#0072B2', '#E64A19', '#F9A825', '#79C75F', '#48A9A6', '#EBEB02', '#C75FB4']))
+    # ).properties(
+    #     width=600,
+    #     height=600,
+    #     title='Jumlah Kriminalitas per Hari'
+    # )
+
+    # # Tampilkan chart
+    # chart_day
+    
+    # Urutan Chart    
     chart_day = alt.Chart(data_crime_day).mark_bar().encode(
-        x=alt.X('Hari:O', axis=alt.Axis(title='Hari', labelAngle=0)),
+        x=alt.X('Hari:O', sort=alt.EncodingSortField(field="Jumlah Kejahatan", op="sum", order='ascending'), axis=alt.Axis(title='Hari', labelAngle=0)),
         y=alt.Y('Jumlah Kejahatan:Q', title='Jumlah Kejahatan'),
         tooltip=['Hari', 'Jumlah Kejahatan'],
         color=alt.Color('Hari:O', scale=alt.Scale(type='ordinal', range=['#0072B2', '#E64A19', '#F9A825', '#79C75F', '#48A9A6', '#EBEB02', '#C75FB4']))
@@ -499,9 +535,9 @@ with crimeCount_col1:
 
                 - **Kekerasan**: Tiga kejahatan teratas terkait dengan kekerasan fisik, yaitu BATTERY - SIMPLE ASSAULT, ASSAULT WITH DEADLY WEAPON / AGGRAVATED ASSAULT, dan INTIMATE PARTNER - SIMPLE ASSAULT. Ini menunjukkan prevalensi yang mengkhawatirkan dari kekerasan di wilayah kejadian.
                 
-                - **Pencurian**: THEFT OF IDENTITY dan THEFT PLAIN - PETTY ($950 & UNDER) menempati peringkat kedua dan keempat, menyoroti masalah pencurian properti dan identitas.
+                - **Pencurian**: THEFT OF IDENTITY dan THEFT PLAIN - PETTY ($950 & UNDER) menempati peringkat kedua dan ketujuh, menyoroti masalah pencurian properti dan identitas.
                 
-                - **Kerusakan**: VANDALISM - FELONY ($400 & OVER, ALL CHURCH VA...) berada di peringkat ketujuh, menunjukkan tingkat vandalisme yang cukup tinggi.
+                - **Kerusakan**: VANDALISM - FELONY ($400 & OVER, ALL CHURCH VA...) berada di peringkat keenam, menunjukkan tingkat vandalisme yang cukup tinggi.
                 
                 **Tren dan Pola**:
 
@@ -515,28 +551,56 @@ with crimeCount_col1:
     
     # Implikasi
     stringInfo4 = '''
-                **Implikasi**:
+                **Analisa Gender Korban**:
 
-                - Fokus penegakan hukum mungkin perlu diprioritaskan pada pencegahan dan penanganan kejahatan kekerasan.
-                - Upaya peningkatan kesadaran masyarakat tentang keamanan digital dan perlindungan identitas mungkin diperlukan untuk mengurangi pencurian identitas.
-                - Program dan inisiatif untuk mencegah perusakan properti perlu dipertimbangkan.
+                - Prosess...
                 '''
     st.info(stringInfo4)
 
 with crimeCount_col2:
     # Bar Chart Data Tindak Kejahatan
+    # bar_chart = alt.Chart(data_crime_count.head(10)).mark_bar().encode(
+    #     x='Jumlah',
+    #     y=alt.Y('Deskripsi Kejahatan').sort('-x'),
+    #     color=alt.value('#0072B2'),
+    # ).properties(
+    #     width=600,
+    #     height=500,
+    #     title='10 Jenis Kejahatan Paling Umum'
+    # )
+
+    # bar_chart
+    
+    # TRY CHART
+    color_map = {
+        'BATTERY - SIMPLE ASSAULT': '#0072B2',
+        'THEFT OF IDENTITY': '#E64A19',
+        'BURGLARY FROM VEHICLE': '#F9A825',
+        'ASSAULT WITH DEADLY WEAPON, AGGRAVATED ASSAULT': '#79C75F',
+        'INTIMATE PARTNER - SIMPLE ASSAULT': '#48A9A6',
+        'VANDALISM - FELONY ($400 & OVER, ALL CHURCH VANDALISMS)': '#EBEB02',
+        'THEFT PLAIN - PETTY ($950 & UNDER)': '#C75FB4',
+        'BURGLARY': '#33A02C',
+        'THEFT FROM MOTOR VEHICLE - GRAND ($950.01 AND OVER)': '#A6CEE3',
+        'ROBBERY': '#B2DF8A',
+    }
+
+    # Extract the list of color values from the dictionary
+    color_list = list(color_map.values())
+
     bar_chart = alt.Chart(data_crime_count.head(10)).mark_bar().encode(
         x='Jumlah',
         y=alt.Y('Deskripsi Kejahatan').sort('-x'),
-        color=alt.value('#0072B2'),
+        color=alt.Color('Deskripsi Kejahatan', scale=alt.Scale(range=color_list)),
     ).properties(
-        width=600,
+        width=700,
         height=500,
         title='10 Jenis Kejahatan Paling Umum'
     )
 
+    # Tampilkan Chart
     bar_chart
-    
+
     chart_gender = alt.Chart(data_gender).mark_bar().encode(
         x=alt.X('JenisKelKor:O', axis=alt.Axis(title='Jenis Kelamin', labelAngle=0)),
         y=alt.Y('Jml_Total:Q', title='Total'),
