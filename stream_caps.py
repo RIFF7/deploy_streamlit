@@ -231,34 +231,20 @@ reportLpr_col3, reportLpr_col4 = st.columns(2)
 
 with reportLpr_col1:
     # Grafik Interaktif untuk Analisis Lebih Lanjut
-    interactive_chart = alt.Chart(data_reportLpr).mark_line().encode(
-        x=alt.X('Month_Lpr:O', axis=alt.Axis(title='Bulan', labelAngle=0)),
-        y='Jumlah Laporan:Q',
-        color='Year_Lpr:N',
-        tooltip=['Year_Lpr', 'Month_Lpr', 'Jumlah Laporan']
-    ).properties(
-        width=600,
-        height=400,
-        title='Tren Musiman Jumlah Laporan Kriminal (Interaktif)'
-    ).interactive()
+    # interactive_chart = alt.Chart(data_reportLpr).mark_line().encode(
+    #     x=alt.X('Month_Lpr:O', axis=alt.Axis(title='Bulan', labelAngle=0)),
+    #     y='Jumlah Laporan:Q',
+    #     color='Year_Lpr:N',
+    #     tooltip=['Year_Lpr', 'Month_Lpr', 'Jumlah Laporan']
+    # ).properties(
+    #     width=600,
+    #     height=400,
+    #     title='Tren Musiman Jumlah Laporan Kriminal (Interaktif)'
+    # ).interactive()
     
-    interactive_chart
+    # interactive_chart
     
-with reportLpr_col2:
-    # Heatmap untuk Melihat Pola
-    heatmap = alt.Chart(data_reportLpr).mark_rect().encode(
-        x=alt.X('Month_Lpr:O', axis=alt.Axis(title='Bulan', labelAngle=0)),
-        y=alt.Y('Year_Lpr:O', axis=alt.Axis(title='Tahun Laporan')),
-        color='Jumlah Laporan:Q'
-    ).properties(
-        width=600,
-        height=400,
-        title='Heatmap Pola Musiman Jumlah Laporan Kriminal'
-    )
-    
-    heatmap
-    
-with reportLpr_col3:
+    # Ganti Menjadi Penjelasan
     st.markdown('##### Analisa Tren Musiman Laporan Kriminal')
     string4 = '''
                 1. **Tren Menurun pada Tahun 2024**: Terdapat penurunan yang signifikan dalam jumlah laporan kejahatan pada tahun 2024, terutama pada bulan Januari, dibandingkan dengan tahun-tahun sebelumnya. Ini menunjukkan adanya perubahan yang mungkin signifikan dalam situasi keamanan atau perubahan dalam kebijakan penegakan hukum yang berdampak pada tingkat kejahatan.
@@ -268,61 +254,86 @@ with reportLpr_col3:
                 3. **Pola Musiman**: Terlihat pola musiman dalam jumlah laporan kejahatan, dengan biasanya terjadi peningkatan selama beberapa bulan tertentu dalam setahun. Hal ini mungkin berkaitan dengan faktor-faktor musiman seperti liburan, cuaca, atau peristiwa-peristiwa khusus yang mempengaruhi tingkat kejahatan.
             '''
     st.write(string4)
-
-with reportLpr_col4:
-    # Layout
-    st.markdown('##### Tren Jumlah Perbandingan Berdasarkan Tahun')
-
-    # Buat daftar tahun unik
-    tahun_unik = list(data_reportLpr['Year_Lpr'].unique())
-
-    # Buat pilihan dropdown untuk tahun pertama
-    tahun_pertama = st.selectbox('Pilih Tahun Pertama:', tahun_unik)
-
-    # Buat pilihan dropdown untuk tahun kedua
-    tahun_kedua = st.selectbox('Pilih Tahun Kedua:', tahun_unik)
-
-    # Filter data berdasarkan tahun yang dipilih
-    data_reportLpr_filtered1 = data_reportLpr[data_reportLpr['Year_Lpr'] == tahun_pertama]
-    data_reportLpr_filtered2 = data_reportLpr[data_reportLpr['Year_Lpr'] == tahun_kedua]
-
-    # Buat plot dengan Altair untuk perbandingan antara tahun pertama dan tahun kedua
-    chart = alt.Chart(data_reportLpr_filtered1).mark_line().encode(
-        x=alt.X('Month_Lpr', title='Bulan'),
-        y=alt.Y('Jumlah Laporan', title='Jumlah Kejahatan'),
-        color=alt.value('blue'),
-        tooltip=['Year_Lpr:N', 'Jumlah Laporan:Q']  # Menambahkan tooltip untuk tahun dan jumlah kejahatan
-    ).properties(
-        width=600,
-        height=400
-    )
-
-    chart += alt.Chart(data_reportLpr_filtered2).mark_line().encode(
-        x=alt.X('Month_Lpr', title='Bulan'),
-        y=alt.Y('Jumlah Laporan', title='Jumlah Kejahatan'),
-        color=alt.value('red'),
-        tooltip=['Year_Lpr:N', 'Jumlah Laporan:Q']  # Menambahkan tooltip untuk tahun dan jumlah kejahatan
-    )
-
-    # Tambahkan titik pada setiap lekukan grafik
-    chart += alt.Chart(data_reportLpr_filtered1).mark_circle(color='blue').encode(
-        x=alt.X('Month_Lpr', title='Bulan'),
-        y=alt.Y('Jumlah Laporan', title='Jumlah Kejahatan'),
-        tooltip=['Year_Lpr:N', 'Jumlah Laporan:Q']  # Menambahkan tooltip untuk tahun
-    )
-
-    chart += alt.Chart(data_reportLpr_filtered2).mark_circle(color='red').encode(
-        x=alt.X('Month_Lpr', title='Bulan'),
-        y=alt.Y('Jumlah Laporan', title='Jumlah Kejahatan'),
-        tooltip=['Year_Lpr:N', 'Jumlah Laporan:Q']  # Menambahkan tooltip untuk tahun
-    )
-
-    # Tampilkan plot menggunakan Streamlit
-    st.altair_chart(chart, use_container_width=True)
     
-    # Menggunakan widget bar Altair untuk memilih tahun
-    year_selected = alt.binding_select(options=sorted(data_reportLpr['Year_Lpr'].unique()), name='Tahun  ')
-    year_selection = alt.selection_single(fields=['Year_Lpr'], bind=year_selected)
+with reportLpr_col2:
+    # Heatmap untuk Melihat Pola
+    heatmap = alt.Chart(data_reportLpr).mark_rect().encode(
+        x=alt.X('Month_Lpr:O', axis=alt.Axis(title='Bulan', labelAngle=0)),
+        y=alt.Y('Year_Lpr:O', axis=alt.Axis(title='Tahun Laporan')),
+        color='Jumlah Laporan:Q'
+    ).properties(
+        width=700,
+        height=500,
+        title='Heatmap Pola Musiman Jumlah Laporan Kriminal'
+    )
+    
+    heatmap
+    
+# with reportLpr_col3:
+#     st.markdown('##### Analisa Tren Musiman Laporan Kriminal')
+#     string4 = '''
+#                 1. **Tren Menurun pada Tahun 2024**: Terdapat penurunan yang signifikan dalam jumlah laporan kejahatan pada tahun 2024, terutama pada bulan Januari, dibandingkan dengan tahun-tahun sebelumnya. Ini menunjukkan adanya perubahan yang mungkin signifikan dalam situasi keamanan atau perubahan dalam kebijakan penegakan hukum yang berdampak pada tingkat kejahatan.
+                
+#                 2. **Fluktuasi Tren Tahunan**: Secara umum, terlihat fluktuasi dalam jumlah laporan kejahatan dari bulan ke bulan dalam setiap tahun. Meskipun ada peningkatan dan penurunan yang terjadi dari bulan ke bulan, tetapi secara keseluruhan, trennya cenderung stabil atau menurun dari tahun ke tahun.
+                
+#                 3. **Pola Musiman**: Terlihat pola musiman dalam jumlah laporan kejahatan, dengan biasanya terjadi peningkatan selama beberapa bulan tertentu dalam setahun. Hal ini mungkin berkaitan dengan faktor-faktor musiman seperti liburan, cuaca, atau peristiwa-peristiwa khusus yang mempengaruhi tingkat kejahatan.
+#             '''
+#     st.write(string4)
+
+# with reportLpr_col4:
+#     # Layout
+#     st.markdown('##### Tren Jumlah Perbandingan Berdasarkan Tahun')
+
+#     # Buat daftar tahun unik
+#     tahun_unik = list(data_reportLpr['Year_Lpr'].unique())
+
+#     # Buat pilihan dropdown untuk tahun pertama
+#     tahun_pertama = st.selectbox('Pilih Tahun Pertama:', tahun_unik)
+
+#     # Buat pilihan dropdown untuk tahun kedua
+#     tahun_kedua = st.selectbox('Pilih Tahun Kedua:', tahun_unik)
+
+#     # Filter data berdasarkan tahun yang dipilih
+#     data_reportLpr_filtered1 = data_reportLpr[data_reportLpr['Year_Lpr'] == tahun_pertama]
+#     data_reportLpr_filtered2 = data_reportLpr[data_reportLpr['Year_Lpr'] == tahun_kedua]
+
+#     # Buat plot dengan Altair untuk perbandingan antara tahun pertama dan tahun kedua
+#     chart = alt.Chart(data_reportLpr_filtered1).mark_line().encode(
+#         x=alt.X('Month_Lpr', title='Bulan'),
+#         y=alt.Y('Jumlah Laporan', title='Jumlah Kejahatan'),
+#         color=alt.value('blue'),
+#         tooltip=['Year_Lpr:N', 'Jumlah Laporan:Q']  # Menambahkan tooltip untuk tahun dan jumlah kejahatan
+#     ).properties(
+#         width=600,
+#         height=400
+#     )
+
+#     chart += alt.Chart(data_reportLpr_filtered2).mark_line().encode(
+#         x=alt.X('Month_Lpr', title='Bulan'),
+#         y=alt.Y('Jumlah Laporan', title='Jumlah Kejahatan'),
+#         color=alt.value('red'),
+#         tooltip=['Year_Lpr:N', 'Jumlah Laporan:Q']  # Menambahkan tooltip untuk tahun dan jumlah kejahatan
+#     )
+
+#     # Tambahkan titik pada setiap lekukan grafik
+#     chart += alt.Chart(data_reportLpr_filtered1).mark_circle(color='blue').encode(
+#         x=alt.X('Month_Lpr', title='Bulan'),
+#         y=alt.Y('Jumlah Laporan', title='Jumlah Kejahatan'),
+#         tooltip=['Year_Lpr:N', 'Jumlah Laporan:Q']  # Menambahkan tooltip untuk tahun
+#     )
+
+#     chart += alt.Chart(data_reportLpr_filtered2).mark_circle(color='red').encode(
+#         x=alt.X('Month_Lpr', title='Bulan'),
+#         y=alt.Y('Jumlah Laporan', title='Jumlah Kejahatan'),
+#         tooltip=['Year_Lpr:N', 'Jumlah Laporan:Q']  # Menambahkan tooltip untuk tahun
+#     )
+
+#     # Tampilkan plot menggunakan Streamlit
+#     st.altair_chart(chart, use_container_width=True)
+    
+#     # Menggunakan widget bar Altair untuk memilih tahun
+#     year_selected = alt.binding_select(options=sorted(data_reportLpr['Year_Lpr'].unique()), name='Tahun  ')
+#     year_selection = alt.selection_single(fields=['Year_Lpr'], bind=year_selected)
 
 # TREN KEJADIAN TINDAK KRIMINAL 
 st.markdown('### Tren Musiman Jumlah Kejadian Tindak Kriminal')
@@ -374,8 +385,8 @@ with reportOcc_col2:
         y=alt.Y('Year_Occ:O', axis=alt.Axis(title='Tahun Kejadian')),
         color='Jumlah Kejadian:Q'
     ).properties(
-        width=600,
-        height=400,
+        width=700,
+        height=500,
         title='Heatmap Pola Musiman Jumlah Kejadian Kriminal'
     )
     
