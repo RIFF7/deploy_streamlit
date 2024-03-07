@@ -562,9 +562,11 @@ with crimeCount_col1:
     
     # Implikasi
     stringInfo4 = '''
-                **Analisa Gender Korban**:
+                **Analisa Gender Korban**
 
-                - Prosess...
+                - Data menunjukkan bahwa jumlah kriminalitas yang dialami oleh laki-laki (333,887) sedikit lebih tinggi daripada yang dialami oleh perempuan (320,277).
+                
+                - Meskipun perbedaannya mungkin tidak signifikan, perhatian terhadap pola ini dapat membantu dalam penentuan kebijakan penegakan hukum yang lebih efisien dan efektif.
                 '''
     st.info(stringInfo4)
 
