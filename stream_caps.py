@@ -202,15 +202,15 @@ with analisa_col1:
 with analisa_col2:
     st.markdown('#### Analisa Tren Bulan Laporan dan Kejadian Kriminal')
     string3 = '''
-                1. **Trend**:
+                1. **Trend**
                 - Jumlah kriminalitas (baik laporan maupun kejadian) relatif stabil dari bulan ke bulan, tanpa fluktuasi signifikan.
                 - Polanya serupa, meningkat di awal tahun mencapai puncak di pertengahan tahun, dan turun di akhir tahun.
                 
-                2. **Perbedaan Kecil**:
+                2. **Perbedaan Kecil**
                 - Terdapat perbedaan kecil dalam jumlah antara bulan laporan dan bulan kejadian, namun tidak signifikan
                 - Contoh: Penurunan pada bulan ke-8 di kedua grafik tidak terlalu signifikan.
                 
-                3. **Penurunan di Akhir Tahun**:
+                3. **Penurunan di Akhir Tahun**
                 - Penurunan konsisten pada bulan November dan Desember.
                 - Kemungkinan terkait peningkatan keamanan menjelang liburan atau perubahan perilaku masyarakat.
             '''
@@ -249,11 +249,15 @@ with reportLpr_col1:
     # Ganti Menjadi Penjelasan
     st.markdown('##### Analisa Tren Musiman Laporan Kriminal')
     string4 = '''
-                1. **Tren Menurun pada Tahun 2024**: Terdapat penurunan yang signifikan dalam jumlah laporan kejahatan pada tahun 2024, terutama pada bulan Januari, dibandingkan dengan tahun-tahun sebelumnya. Ini menunjukkan adanya perubahan yang mungkin signifikan dalam situasi keamanan atau perubahan dalam kebijakan penegakan hukum yang berdampak pada tingkat kejahatan.
+                1. **Tren Umum**\n
+                Tren umum dari tahun 2020 hingga 2023 menunjukkan fluktuasi dalam jumlah laporan kejahatan dari bulan ke bulan, dengan beberapa puncak dan lembah yang terlihat di sepanjang periode tersebut.
                 
-                2. **Fluktuasi Tren Tahunan**: Secara umum, terlihat fluktuasi dalam jumlah laporan kejahatan dari bulan ke bulan dalam setiap tahun. Meskipun ada peningkatan dan penurunan yang terjadi dari bulan ke bulan, tetapi secara keseluruhan, trennya cenderung stabil atau menurun dari tahun ke tahun.
+                2. **Tren Tahunan**\n
+                Secara umum, jumlah laporan kejahatan cenderung mengalami peningkatan dari tahun 2020 hingga 2022, kemudian mengalami sedikit penurunan pada tahun 2023. Hal ini mencerminkan pola umum peningkatan atau penurunan tingkat kejahatan dari tahun ke tahun.
                 
-                3. **Pola Musiman**: Terlihat pola musiman dalam jumlah laporan kejahatan, dengan biasanya terjadi peningkatan selama beberapa bulan tertentu dalam setahun. Hal ini mungkin berkaitan dengan faktor-faktor musiman seperti liburan, cuaca, atau peristiwa-peristiwa khusus yang mempengaruhi tingkat kejahatan.
+                3. **Perbedaan Musiman**\n
+                Ada pola musiman yang terlihat dalam data, di mana jumlah laporan kejahatan cenderung naik atau turun pada bulan-bulan tertentu dalam setiap tahunnya. Misalnya, puncak laporan kejahatan terlihat pada bulan Juli di semua tahun, sementara penurunan terlihat pada bulan April.
+                
             '''
     st.write(string4)
     
@@ -362,21 +366,40 @@ with reportOcc_col1:
     # Ganti Menjadi Penjelasan
     st.markdown('##### Analisa Tren Musiman Kejadian Kriminal')
     string4 = '''
-                1. **Pola Musiman**: Terdapat pola musiman dalam jumlah kejadian tindak kriminal, dengan terjadinya fluktuasi yang berulang dari bulan ke bulan. Misalnya, terlihat peningkatan yang konsisten pada bulan Juli di setiap tahun, yang mungkin dapat dijelaskan oleh faktor-faktor seperti cuaca atau perubahan perilaku masyarakat selama musim liburan.
+                1. **Tren Umum**\n
+                Dari tahun 2020 hingga 2023, terlihat fluktuasi dalam jumlah kejadian tindak kriminal dari bulan ke bulan, dengan beberapa bulan menunjukkan peningkatan dan penurunan.
                 
-                2. **Tren Tahunan**: Meskipun terjadi fluktuasi bulanan, tren keseluruhan dari tahun ke tahun juga bisa diamati. Perhatikan bahwa jumlah kejadian tindak kriminal cenderung naik dari tahun 2020 hingga 2022, namun mengalami penurunan yang signifikan pada tahun 2024.
+                2. **Tren Tahunan**\n
+                Secara keseluruhan, tren tahunan menunjukkan adanya pola peningkatan jumlah kejadian tindak kriminal dari tahun 2020 hingga 2022, dengan sedikit penurunan pada tahun 2023. Namun, perbedaan ini mungkin tidak signifikan.
                 
-                3. **Perubahan Signifikan pada Tahun 2024**: Terdapat penurunan yang drastis dalam jumlah kejadian tindak kriminal pada tahun 2024. Ini bisa menjadi subjek penelitian lebih lanjut untuk memahami penyebabnya. Kemungkinan faktor yang berkontribusi meliputi peningkatan keamanan, perubahan sosial, atau kebijakan penegakan hukum yang baru, atau bisa jadi pada tahun baru di bulan baru ini tindak kejahatan masih minim terjadi.
+                3. **Perbandingan dengan Pelaporan**\n
+                Ada perbedaan antara tren kejadian tindak kriminal dengan tren pelaporan tindak kriminal. Meskipun tren umumnya serupa, terdapat fluktuasi yang berbeda dari bulan ke bulan antara kedua set data.
+                
+                4. **Analisis Musiman**\n
+                Pola musiman juga terlihat dalam data, dengan bulan-bulan tertentu menunjukkan peningkatan atau penurunan dalam jumlah kejadian tindak kriminal setiap tahunnya.
             '''
     st.write(string4)
     
     # KESIMPULAN TREN MUSIMAN
     stringInfo3 = '''
-                    ##### Kesimpulan Analisa Tren Musiman Tindak Kriminal
+                    Perhatikan bahwa dalam data kejahatan yang dilaporkan (tren pelaporan) dan kejadian yang sebenarnya (tren kejadian), terdapat perbedaan dalam jumlah laporan dan jumlah kejadian pada tahun dan bulan yang sama. Ini menunjukkan bahwa proses pelaporan kejahatan tidak selalu mencerminkan secara akurat jumlah kejadian yang sebenarnya terjadi.
                     
-                    Meskipun laporan tindak kriminal menunjukkan penurunan dari tahun 2020 hingga 2024, jumlah kejadiannya menunjukkan fluktuasi, dengan peningkatan di 2020-2022 dan penurunan di 2024. Perbedaan ini, serta pola musiman yang terlihat pada data, menunjukkan kompleksitas pola kejahatan.
+                    1. **Kesenjangan antara Laporan dan Kejadian**\n
                     
-                    Tantangan dalam memahami dan mengatasi kejahatan masih ada, namun data ini juga menawarkan peluang untuk analisis lebih lanjut dan pengembangan strategi yang lebih efektif dalam penegakan hukum dan pencegahan. Upaya ini dapat dilakukan dengan meningkatkan kualitas pelaporan, memperkuat kerjasama masyarakat dan penegakan hukum, serta mengembangkan program pencegahan yang tepat sasaran.
+                    Perbedaan antara jumlah laporan dan kejadian pada tahun dan bulan yang sama menunjukkan adanya kesenjangan antara apa yang dilaporkan oleh masyarakat atau pihak berwenang, dengan apa yang sebenarnya terjadi di lapangan.
+                    
+                    2. **Kemungkinan Penyebab Kesenjangan**\n
+                    
+                    Kesenjangan ini bisa disebabkan oleh beberapa faktor, termasuk:
+
+                    - Underreporting: Tindak kriminal yang sebenarnya terjadi namun tidak dilaporkan kepada pihak berwenang.
+                    - Overreporting: Laporan palsu atau kejadian yang dianggap sebagai kejahatan namun sebenarnya bukan kejahatan.
+                    - Proses Pelaporan: Kesalahan dalam proses pelaporan atau pengolahan data.
+                    - Perubahan Kebijakan: Perubahan dalam kebijakan pelaporan atau definisi kejahatan.
+                    
+                    3. **Implikasi dan Rekomendasi**\n
+                    
+                    Kesenjangan antara laporan dan kejadian dapat memiliki dampak pada analisis keamanan dan kebijakan penegakan hukum. Oleh karena itu, penting untuk memahami penyebab kesenjangan ini dan mengambil langkah-langkah untuk memperbaiki atau mengurangi kesenjangan tersebut. Ini bisa meliputi peningkatan kesadaran masyarakat tentang pentingnya pelaporan kejahatan, peningkatan transparansi dan akurasi dalam proses pelaporan, serta evaluasi dan perbaikan terus-menerus terhadap sistem pelaporan dan analisis kejahatan.
                 '''
     st.info(stringInfo3)
     
