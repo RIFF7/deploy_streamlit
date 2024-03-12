@@ -184,19 +184,21 @@ with monthOcc_col:
 with analisa_col1:
     st.markdown('#### Analisa Tren Tahun Laporan dan Kejadian Kriminal')
     string2 = '''
-                1. **Trend**:
-                - Jumlah tindak kriminal (baik laporan maupun kejadian) menunjukkan tren penurunan dari tahun 2020 hingga 2024.
-                - Penurunan signifikan pada laporan (8752 kasus) dibandingkan kejadian (6973 kasus) terjadi di tahun 2024.
+                - Terdapat peningkatan jumlah kejahatan yang dilaporkan dari tahun 2020 hingga 2022, diikuti dengan sedikit penurunan pada tahun 2023.
                 
-                2. **Perbandingan Laporan dan Kejadian**:
-                - Perbandingan relatif stabil dari tahun ke tahun, tetapi lebih rendah di tahun 2024.
-                - Menunjukkan lebih sedikit tindak kriminal yang dilaporkan dibandingkan dengan yang terjadi.
+                - Perbandingan antara jumlah kejahatan yang dilaporkan dan kejadian menunjukkan adanya perbedaan, dengan jumlah kejahatan yang dilaporkan cenderung sedikit lebih rendah daripada jumlah kejahatan yang terjadi pada tahun-tahun tertentu.
                 
-                3. **Potensi Penurunan Kualitas Pelaporan**:
-                - Penurunan laporan di 2024, tanpa penurunan kejadian yang sebanding, mengindikasikan potensi penurunan kualitas pelaporan.
+                - Meskipun terdapat perbedaan antara jumlah kejahatan yang dilaporkan dan yang terjadi, terdapat konsistensi yang cukup besar dalam tren kejahatan dari tahun ke tahun.
             '''
     st.write(string2)
+    
+    stringInfo8 = '''
+                Analisis ini menunjukkan adanya tren peningkatan jumlah kejahatan dari tahun ke tahun, meskipun terdapat perbedaan antara jumlah kejahatan yang dilaporkan dan yang terjadi. Perbedaan ini menunjukkan adanya potensi untuk meningkatkan akurasi dan keandalan data kejahatan di masa mendatang. Evaluasi lebih lanjut terhadap proses pelaporan kejahatan mungkin diperlukan untuk memastikan akurasi dan konsistensi dalam pelaporan kejahatan.
 
+                Analisis ini bertujuan juga untuk memberikan wawasan tentang tren kejahatan dan menyoroti pentingnya evaluasi dan perbaikan terus-menerus terhadap sistem pelaporan kejahatan untuk meningkatkan akurasi dan keandalan data kejahatan.
+                '''
+    st.info(stringInfo8)
+    
 with analisa_col2:
     st.markdown('#### Analisa Tren Bulan Laporan dan Kejadian Kriminal')
     string3 = '''
