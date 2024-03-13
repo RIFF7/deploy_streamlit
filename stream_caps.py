@@ -519,9 +519,9 @@ with crimeDay_col1:
                     - Selasa: Memiliki jumlah kejahatan paling rendah (89.434)
                     
                 **Pola Aktivitas Kejahatan**
-                - **Peningkatan Kejahatan di Akhir Pekan**: Terjadi peningkatan signifikan pada jumlah kejahatan di hari Jumat, Sabtu, dan Minggu dibandingkan hari Senin dan Selasa. Hal ini menunjukkan kemungkinan korelasi antara aktivitas akhir pekan dan peningkatan peluang terjadinya kejahatan.
+                - **Peningkatan Kejahatan di Akhir Pekan**: Terjadi peningkatan signifikan pada jumlah kejahatan di hari Jumat, Sabtu, dan Minggu dibandingkan hari Selasa. Hal ini menunjukkan kemungkinan korelasi antara aktivitas akhir pekan dan peningkatan peluang terjadinya kejahatan.
                 
-                - **Penurunan Kejahatan di Awal Pekan**: Jumlah kejahatan pada hari Senin dan Selasa relatif lebih rendah dibandingkan hari lain. Hal ini dapat dikaitkan dengan aktivitas masyarakat yang umumnya lebih fokus pada pekerjaan di awal pekan.
+                - **Penurunan Kejahatan di Awal Pekan**: Jumlah kejahatan pada hari Selasa relatif lebih rendah dibandingkan hari lain. Hal ini dapat dikaitkan dengan aktivitas masyarakat yang umumnya lebih fokus pada pekerjaan di awal pekan.
             '''
     st.write(string5)
     
@@ -750,17 +750,20 @@ with conclusion1:
     stringInfo6 = '''
                     ##### Tren Kriminalitas
 
-                    - **Penurunan**: Terjadi penurunan tren kriminalitas (baik laporan maupun kejadian) dari tahun 2020 hingga 2024.
+                    **Tren**
+
+                    - Peningkatan jumlah kejahatan yang dilaporkan dari tahun 2020 hingga 2022.
+                    - Penurunan sedikit pada tahun 2023.
+                    - Konsistensi tren kejahatan dari tahun ke tahun.
                     
-                    - **Perbedaan Laporan dan Kejadian**: Lebih sedikit tindak kriminal yang dilaporkan dibandingkan dengan yang terjadi, menunjukkan potensi penurunan kualitas pelaporan.
+                    **Perbedaan**
+
+                    - Jumlah kejahatan yang dilaporkan lebih rendah daripada yang terjadi.
                     
-                    - **Stabilitas Bulanan**: Jumlah kriminalitas relatif stabil dari bulan ke bulan tanpa fluktuasi signifikan.
-                    
-                    - **Penurunan di Akhir Tahun**: Penurunan konsisten pada bulan November dan Desember.
-                    
-                    - **Pola Musiman**: Terlihat pola musiman dalam jumlah laporan dan kejadian, dengan peningkatan di awal tahun, puncak di pertengahan tahun, dan turun di akhir tahun.
-                    
-                    - **Penurunan Signifikan di 2024**: Penurunan signifikan dalam jumlah laporan dan kejadian di tahun 2024, terutama pada bulan Januari.
+                    **Implikasi**
+
+                    - Potensi untuk meningkatkan akurasi data kejahatan.
+                    - Pentingnya evaluasi dan perbaikan sistem pelaporan.
                     
                     ##### Tingkat Kejadian
 
